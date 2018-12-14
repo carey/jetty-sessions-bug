@@ -7,15 +7,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(urlPatterns = "/test", asyncSupported = true)
-public class TestServlet extends HttpServlet {
+@WebServlet(urlPatterns = "/error", asyncSupported = true)
+public class ErrorServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        if (req.getAttribute("marker") == null) {
-            req.setAttribute("marker", Boolean.TRUE);
-            req.startAsync().dispatch();
-        } else {
-            resp.sendError(404);
-        }
+        req.getSession();
+        resp.getWriter().println("<p>404</p>");
     }
 }
